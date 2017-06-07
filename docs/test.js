@@ -10,9 +10,6 @@ fetch(`https://skyway.io/${apiKey}/id?ts=${Date.now()}${Math.random()}`).then(re
 
 btnStart.onclick = evt => {
   pcSetup(callTo.value);
-  webCamSetup(selfView).then(stream => {
-    pc.addStream(stream);
-  });
 }
 
 function socketSetup() {
