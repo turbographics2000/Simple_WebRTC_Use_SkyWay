@@ -107,6 +107,10 @@ function pcSetup(remoteId) {
     audio: false
   }).then(stream => {
     selfView.srcObject = stream;
-    pc.addStream(stream);
+    if ('addStream' in pc) {
+      pc.addStream(stream);
+    } else {
+      stream.getTracks().forEach(track => pc.addTrack(track));
+    }
   }).catch(ex => console.log('getUserMedia error.', ex));
 }
