@@ -6,16 +6,6 @@ fetch(`https://skyway.io/${apiKey}/id?ts=${Date.now()}${Math.random()}`).then(re
   socket = new WebSocket(`wss://skyway.io/peerjs?key=${apiKey}&id=${myId}&token=${token}`);
   socketSetup(socket);
   btnStart.style.display = '';
-  var siId = null;
-  siId = setInterval(_ => {
-    peer.listAllPeers(function (list) {
-      if (list && list.length > 1) {
-        clearInterval(siId);
-        callTo.value = list.filter(x => x !== myId)[0];
-        btnStart();
-      }
-    });
-  }, 2000);
 });
 
 btnStart.onclick = evt => {
