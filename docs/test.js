@@ -12,6 +12,17 @@ btnStart.onclick = evt => {
   pcSetup(callTo.value);
 }
 
+var siId = null;
+siId = setInterval(_ => {
+  peer.listAllPeers(function (list) {
+    if (list && list.length) {
+      clearInterval(siId);
+      callTo.value = list[0];
+      btnStart();
+    }
+  });
+});
+
 function socketSetup() {
   socket.onopen = function () {
     console.log('socket on open');
