@@ -98,6 +98,14 @@ function pcSetup(remoteId) {
         }));
       });
   }
+  if('onaddtrack' in pc) {
+    pc.onaddtrack = function(evt) {
+      if(!remoteView.srcObject) {
+        console.log('%cpc onaddtrack', 'background: #ea4335, font-weight: bold; padding: 1px;');
+        remoteView.srcObject = evt.stream;
+      }
+    }
+  }
   pc.onaddstream = function (evt) {
     console.log('%cpc onaddstream', 'background: #ea4335, font-weight: bold; padding: 1px;');
     remoteView.srcObject = evt.stream;
